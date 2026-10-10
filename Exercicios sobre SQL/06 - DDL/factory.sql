@@ -1,0 +1,63 @@
+-- ALTER TABLE Produto ADD CONSTRAINT Chk_Peso CHECK (Peso > 0);
+-- PRAGMA foreign_keys = OFF;
+-- BEGIN;
+-- CREATE TABLE Produto_Novo (
+--    CodProd INTEGER NOT NULL PRIMARY KEY,
+--    DescrProd VARCHAR(30),
+--    Peso FLOAT CHECK (Peso > 0)
+-- ;
+-- INSERT INTO Produto_Novo SELECT CodProd, DescrProd, Peso FROM Produto;
+-- DROP TABLE Produto;
+-- ALTER TABLE Produto_Novo RENAME TO Produto;
+-- COMMIT;
+-- PRAGMA foreign_keys = ON;
+
+-- ALTER TABLE MaqProd ADD CONSTRAINT Chk_Tempo CHECK (Tempo > 0);
+-- PRAGMA foreign_keys = OFF;
+-- BEGIN;
+-- CREATE TABLE MaqProd_Novo (
+--    CodMaq INTEGER NOT NULL,
+--    CodProd INTEGER NOT NULL,
+--    Tempo FLOAT CHECK (Tempo > 0),
+--    PRIMARY KEY (CodMaq, CodProd),
+--    FOREIGN KEY (CodMaq) REFERENCES Maquina(CodMaq),
+--    FOREIGN KEY (CodProd) REFERENCES Produto(CodProd)
+-- );
+-- INSERT INTO MaqProd_Novo SELECT CodMaq, CodProd, Tempo FROM MaqProd;
+-- DROP TABLE MaqProd;
+-- ALTER TABLE MaqProd_Novo RENAME TO MaqProd;
+-- COMMIT;
+-- PRAGMA foreign_keys = ON;
+
+-- ALTER TABLE Produto DROP CONSTRAINT Chk_Peso;
+-- PRAGMA foreign_keys = OFF;
+-- BEGIN;
+-- CREATE TABLE Produto_Novo (
+--    CodProd INTEGER NOT NULL PRIMARY KEY,
+--    DescrProd VARCHAR(30),
+--    Peso FLOAT
+-- );
+-- INSERT INTO Produto_Novo SELECT CodProd, DescrProd, Peso FROM Produto;
+-- DROP TABLE Produto;
+-- ALTER TABLE Produto_Novo RENAME TO Produto;
+-- COMMIT;
+-- PRAGMA foreign_keys = ON;
+
+-- ALTER TABLE Produto ADD COLUMN Preco FLOAT;
+
+-- ALTER TABLE ComposProd DROP COLUMN Quant;
+
+-- DROP TABLE ComposProd;
+
+-- ALTER TABLE Maquina MODIFY NomeMaq VARCHAR(50);
+-- PRAGMA foreign_keys = OFF;
+-- BEGIN;
+-- CREATE TABLE Maquina_Nova (
+--    CodMaq INTEGER NOT NULL PRIMARY KEY,
+--    NomeMaq VARCHAR(50)
+-- );
+-- INSERT INTO Maquina_Nova SELECT CodMaq, NomeMaq FROM Maquina;
+-- DROP TABLE Maquina;
+-- ALTER TABLE Maquina_Nova RENAME TO Maquina;
+-- COMMIT;
+-- PRAGMA foreign_keys = ON;
